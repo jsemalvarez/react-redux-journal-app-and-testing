@@ -1,0 +1,1 @@
+# react-redux-journal-app-and-testing
