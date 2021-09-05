@@ -1,1 +1,1 @@
-# react-redux-journal-app-and-testing
+# React Redux JournalApp and Testing
