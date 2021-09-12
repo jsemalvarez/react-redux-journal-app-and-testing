@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     BrowserRouter as Router,
     Switch,
@@ -16,6 +16,9 @@ export const AppRouter = () => {
 
     const dispatch = useDispatch()
 
+    const [checking, setChecking] = useState(true)
+    const [isLoggedIn, setIsLoggedIn] = useState(false)
+
     useEffect( () => {
         /**
          *  onAuthStateChanged es un observador del estado de autenticacion del usuario.
@@ -26,10 +29,22 @@ export const AppRouter = () => {
         onAuthStateChanged( auth, ( user ) => {       
             if( user?.uid ){
                 dispatch( login( user.uid, user.displayName ) )
-            }     
+                setIsLoggedIn( true )
+            }else{
+                setIsLoggedIn( false )
+            }
+            
+            setChecking(false)
         })
 
-    }, [ dispatch ])
+    }, [ dispatch, setChecking ])
+
+
+    if( checking ){
+        return(
+            <h2>Cargando datos...</h2>
+        )
+    }
 
     return (
         <Router>

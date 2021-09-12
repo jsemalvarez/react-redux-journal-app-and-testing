@@ -4,7 +4,8 @@ import {
     googleAuthProvider, 
     createUserWithEmailAndPassword, 
     signInWithEmailAndPassword, 
-    updateProfile 
+    signOut,
+    updateProfile, 
 } from "../firebase/firebase-config"
 import { types } from "../types/types"
 import { finishLoading, startLoading } from "./ui"
@@ -68,3 +69,15 @@ export const login = ( uid, displayName ) => ({
         type: types.login,
         payload: { uid, displayName }
     })
+
+export const startLogout = () => {
+    return async( dispatch ) => {
+        await signOut( auth )
+
+        dispatch( logout() )
+    }
+}
+
+export const logout = () => ({
+    type: types.logout
+})

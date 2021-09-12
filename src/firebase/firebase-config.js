@@ -5,6 +5,7 @@ import {
     signInWithPopup, 
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword, 
+    signOut,
     updateProfile, 
     GoogleAuthProvider,
     onAuthStateChanged } from "firebase/auth";
@@ -34,6 +35,7 @@ export {
     signInWithPopup,
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
+    signOut,
     updateProfile,
     onAuthStateChanged,
     firebase
