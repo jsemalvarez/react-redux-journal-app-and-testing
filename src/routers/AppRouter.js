@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import {
     BrowserRouter as Router,
     Switch,
-    Route,
     Redirect
   } from 'react-router-dom';
 
+import { login } from '../actions/auth';
+
+import { PrivateRoutes } from '../routers/PrivateRoutes'
+import { PublicRoutes } from '../routers/PublicRoutes'
 import { AuthRouter } from './AuthRouter';
 import { JournalScreen } from '../components/journal/JournalScreen';
 import { onAuthStateChanged, auth } from '../firebase/firebase-config';
-import { useDispatch } from 'react-redux';
-import { login } from '../actions/auth';
 
 export const AppRouter = () => {
 
@@ -50,15 +52,18 @@ export const AppRouter = () => {
         <Router>
             <div>
                 <Switch>
-                    <Route 
-                        path="/auth"
+
+                    <PublicRoutes 
+                        isAuthenticated={ isLoggedIn }
                         component={ AuthRouter }
+                        path="/auth" 
                     />
 
-                    <Route 
-                        exact
-                        path="/"
+                    <PrivateRoutes  
+                        isAuthenticated={ isLoggedIn }
                         component={ JournalScreen }
+                        path="/" 
+                        exact
                     />
 
                     <Redirect to="/auth/login" />
