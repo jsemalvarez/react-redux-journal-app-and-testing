@@ -1,6 +1,13 @@
 import { initializeApp } from 'firebase/app'
 import { getFirestore } from 'firebase/firestore/lite';
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { 
+    getAuth, 
+    signInWithPopup, 
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword, 
+    updateProfile, 
+    GoogleAuthProvider,
+    onAuthStateChanged } from "firebase/auth";
 
 
 const firebaseConfig = {
@@ -25,5 +32,9 @@ export {
     googleAuthProvider,
     auth,
     signInWithPopup,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    updateProfile,
+    onAuthStateChanged,
     firebase
 }
