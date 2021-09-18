@@ -13,6 +13,7 @@ import { PublicRoutes } from '../routers/PublicRoutes'
 import { AuthRouter } from './AuthRouter';
 import { JournalScreen } from '../components/journal/JournalScreen';
 import { onAuthStateChanged, auth } from '../firebase/firebase-config';
+import { startLoadingNotes } from '../actions/notes';
 
 export const AppRouter = () => {
 
@@ -28,10 +29,17 @@ export const AppRouter = () => {
          * onAuthStateChanged nos retorna el usuario en caso de estar autenticado o null en
          * caso de no estarlo 
          */
-        onAuthStateChanged( auth, ( user ) => {       
+        onAuthStateChanged( auth, async( user ) => {  
+
             if( user?.uid ){
                 dispatch( login( user.uid, user.displayName ) )
                 setIsLoggedIn( true )
+
+                //aca es el primer momento en que conocemos cual es el uid
+                //const notes = await loadNotes( user.uid )
+                //dispatch( setNotes( notes ) )
+                // es mas elegante manejar la carga del store mediante acciones
+                dispatch( startLoadingNotes( user.uid ) )
             }else{
                 setIsLoggedIn( false )
             }

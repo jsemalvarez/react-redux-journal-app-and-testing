@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app'
-import { getFirestore } from 'firebase/firestore/lite';
+import { getFirestore, collection, addDoc, getDocs } from 'firebase/firestore'; // /lite
 import { 
     getAuth, 
     signInWithPopup, 
@@ -20,8 +20,6 @@ const firebaseConfig = {
     messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
     appId: process.env.REACT_APP_ID
 };
-
-console.log( process.env )
   
 // Initialize Firebase
 const firebase = initializeApp(firebaseConfig);
@@ -32,6 +30,9 @@ const auth = getAuth();
 
 export {
     db,
+    collection, 
+    addDoc,
+    getDocs,
     googleAuthProvider,
     auth,
     signInWithPopup,
