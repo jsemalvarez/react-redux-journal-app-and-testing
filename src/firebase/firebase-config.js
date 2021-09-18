@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app'
-import { getFirestore, collection, addDoc, getDocs } from 'firebase/firestore'; // /lite
+import { getFirestore, collection, addDoc, getDocs, updateDoc, doc } from 'firebase/firestore'; // /lite
 import { 
     getAuth, 
     signInWithPopup, 
@@ -33,6 +33,8 @@ export {
     collection, 
     addDoc,
     getDocs,
+    updateDoc, 
+    doc,
     googleAuthProvider,
     auth,
     signInWithPopup,
