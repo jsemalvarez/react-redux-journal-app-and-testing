@@ -9,6 +9,7 @@ import {
     updateProfile, 
 } from "../firebase/firebase-config"
 import { types } from "../types/types"
+import { notesCleaning } from "./notes"
 import { finishLoading, startLoading } from "./ui"
 
 export const startLoginEmailPassword = ( email, password ) => {
@@ -78,6 +79,7 @@ export const startLogout = () => {
         await signOut( auth )
 
         dispatch( logout() )
+        dispatch( notesCleaning() )
     }
 }
 
