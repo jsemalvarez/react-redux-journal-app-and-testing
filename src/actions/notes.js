@@ -9,8 +9,8 @@ export const startNewNote = () => {
         const { uid } = getState().auth
 
         const newNote = {
-            title: 'Intento 3',
-            body: 'creo que lo logramos',
+            title: '',
+            body: '',
             date: new Date().getTime()
         }
 
@@ -19,13 +19,22 @@ export const startNewNote = () => {
         // la promesa retorna una referencia al documento
         const doc = await addDoc( collection( db, `${ uid }`, '/journal/notes'), newNote)
 
-        dispatch( activeNote( doc.id, newNote) )
+        dispatch( activeNote( doc.id, newNote ) )
+        dispatch( addNewNote( doc.id, newNote ) )
     }
 }
 
 export const activeNote = ( id, note ) => ({
     type: types.notesActive,
     payload:{ id, ...note }
+})
+
+export const addNewNote = ( id, note ) => ({
+    type: types.notesAddNew,
+    payload:{
+        id,
+        ...note
+    }
 })
 
 export const startLoadingNotes = ( uid ) => {
