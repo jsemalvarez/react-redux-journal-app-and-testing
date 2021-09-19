@@ -5,7 +5,7 @@ import { activeNote } from '../../actions/notes'
 
 const urlDefautl = 'https://earthsky.org/upl/2018/12/comet-wirtanen-Jack-Fusco-dec-2018-Anza-Borrego-desert-CA-e1544613895713.jpg'
 
-export const JournalEntry = ( { id, date, title, body, url = urlDefautl } ) => {
+export const JournalEntry = ( { id, date, title, body, url } ) => {
 
     const dispatch = useDispatch()
     const noteDate = moment( date )
@@ -20,13 +20,18 @@ export const JournalEntry = ( { id, date, title, body, url = urlDefautl } ) => {
             onClick={ handleEntryClick }
         >
             
-            <div 
-                className="journal__entry-picture"
-                style={{
-                    backgroundSize: 'cover',
-                    backgroundImage: `url(${ url })`
-                }}
-            ></div>
+            {
+                url && (
+
+                    <div 
+                        className="journal__entry-picture"
+                        style={{
+                            backgroundSize: 'cover',
+                            backgroundImage: `url(${ url })`
+                        }}
+                    ></div>
+                )
+            }
 
             <div className="journal__entry-body">
                 <p className="journal__entry-title">
