@@ -1,5 +1,5 @@
 import Swal from "sweetalert2"
-import { addDoc, collection, db, doc, updateDoc } from "../firebase/firebase-config"
+import { addDoc, collection, db, doc, updateDoc, deleteDoc } from "../firebase/firebase-config"
 import { loadNotes } from "../helpers/loadNotes"
 import { types } from '../types/types'
 
@@ -71,4 +71,21 @@ export const refreshNote = ( id, note ) => ({
             ...note
         }
     }
+})
+
+export const startDeleting = ( id ) => {
+    return async ( dispatch, getState ) => {
+
+        const uid = getState().auth.uid
+
+        // await db.doc(`${ uid }/journal/notes/${ id }`).delete()
+        await deleteDoc( doc( db, `${ uid }/journal/notes/${ id }`) )
+
+        dispatch( deleteNote(id) )
+    }
+}
+
+export const deleteNote = ( id ) => ({
+    type: types.notesDelete,
+    payload: id
 })
