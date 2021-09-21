@@ -13,3 +13,5 @@
     - Acciones Asíncronas
 - Formularios
 - Mantener el estado de la autenticación
+- CRUD hacia Firestore
+- Expandiendo estore con mas reducers
