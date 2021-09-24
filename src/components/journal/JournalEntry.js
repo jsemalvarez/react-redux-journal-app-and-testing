@@ -3,7 +3,7 @@ import moment from 'moment'
 import { useDispatch } from 'react-redux'
 import { activeNote } from '../../actions/notes'
 
-const urlDefautl = 'https://earthsky.org/upl/2018/12/comet-wirtanen-Jack-Fusco-dec-2018-Anza-Borrego-desert-CA-e1544613895713.jpg'
+// const urlDefautl = 'https://earthsky.org/upl/2018/12/comet-wirtanen-Jack-Fusco-dec-2018-Anza-Borrego-desert-CA-e1544613895713.jpg'
 
 export const JournalEntry = ( { id, date, title, body, url } ) => {
 
@@ -13,6 +13,8 @@ export const JournalEntry = ( { id, date, title, body, url } ) => {
     const handleEntryClick = () => {
         dispatch( activeNote(  id, { date, title, body, url } ) )
     }
+
+    console.log(  )
 
     return (
         <div 
@@ -38,7 +40,7 @@ export const JournalEntry = ( { id, date, title, body, url } ) => {
                     { title }
                 </p>
                 <p className="journal__entry-content">
-                    { body }
+                    { ( body?.length > 145 ) ? body.substring(0,145) + '...' : body }
                 </p>
             </div>
 
