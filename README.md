@@ -15,3 +15,6 @@
 - Mantener el estado de la autenticación
 - CRUD hacia Firestore
 - Expandiendo estore con mas reducers
+
+
+[link](https://jsemalvarez.github.io/react-redux-journal-app-and-testing) de la versión online
