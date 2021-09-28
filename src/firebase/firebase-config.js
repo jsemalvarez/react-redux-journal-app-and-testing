@@ -18,6 +18,15 @@ import {
     deleteDoc } from 'firebase/firestore'; // /lite
 
 
+import{
+
+    getStorage,
+    ref,
+    uploadBytes
+    
+} from 'firebase/storage'
+
+
 const firebaseConfig = {
     apiKey: process.env.REACT_APP_API_KEY,
     authDomain: process.env.REACT_APP_AUTH_DOMAIN,
@@ -34,6 +43,8 @@ const firebase = initializeApp(firebaseConfig);
 const db = getFirestore(firebase);
 const googleAuthProvider = new GoogleAuthProvider();
 const auth = getAuth();
+const storage = getStorage()
+
 
 export {
     db,
@@ -43,13 +54,16 @@ export {
     updateDoc, 
     deleteDoc,
     doc,
-    googleAuthProvider,
     auth,
+    googleAuthProvider,
     signInWithPopup,
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
     signOut,
     updateProfile,
     onAuthStateChanged,
+    storage,
+    ref,
+    uploadBytes,
     firebase
 }

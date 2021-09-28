@@ -14,8 +14,6 @@ export const JournalEntry = ( { id, date, title, body, url } ) => {
         dispatch( activeNote(  id, { date, title, body, url } ) )
     }
 
-    console.log(  )
-
     return (
         <div 
             className="journal__entry pointer"
