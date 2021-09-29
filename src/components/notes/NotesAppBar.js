@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { startSaveNote } from '../../actions/notes'
-import { storage, ref, uploadBytes } from '../../firebase/firebase-config'
+import { storage, ref, uploadBytes, uploadBytesResumable, getDownloadURL } from '../../firebase/firebase-config'
 
 export const NotesAppBar = () => {
 
@@ -20,11 +20,25 @@ export const NotesAppBar = () => {
         // var storageRef = firebase.storage().ref();
         // const imgRef = await storage.ref().child('jose').child('foto perfil')
 
-        const usersCollection  = ref(storage,'foto/perfil.jpg')       
+        const imageRef   = ref(storage,'foto/perfil.jpg')       
 
-        const { ref:imgRef } = await uploadBytes(usersCollection, img);
-
-        console.log( imgRef.fullPath )
+        // const { ref:imgRef } = await uploadBytes(imageRef , img);
+        uploadBytesResumable(imageRef, img )
+        .then((snapshot) => {
+            // console.log(snapshot)
+            // console.log('Uploaded', snapshot.totalBytes, 'bytes.');
+            // console.log('File metadata:', snapshot.metadata);
+            // Let's get a download URL for the file.
+            getDownloadURL(snapshot.ref)
+                .then((url) => {
+                console.log('File available at', url);
+                // ...
+            });
+          }).catch((error) => {
+            console.error('Upload failed', error);
+            // ...
+          });
+        
 
     }
 
