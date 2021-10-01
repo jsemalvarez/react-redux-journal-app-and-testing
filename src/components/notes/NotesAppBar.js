@@ -35,6 +35,7 @@ export const NotesAppBar = () => {
                 type="file"
                 name="file"
                 id="fileSelector"
+                accept="image/jpg, image/jpeg"
                 style={{ display:'none'}}
                 onChange={ handleFileChange }
             />
